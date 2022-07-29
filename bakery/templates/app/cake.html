@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cakes{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="{% url 'cake' %}" class="list-group-item list-group-item-action" aria-current="true">All
+                    Cakes</a>
+                <a href="{% url 'cakeinfo' 'Black Forest' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">Black Forest</a>
+                <a href="{% url 'cakeinfo' 'Choco Vanilla' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">Choco Vanilla</a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                {% for product in cakes %}
+                <div class="col-sm-4 text-center mb-4">
+                    <a href="{% url 'product-detail' product.id %}" class="btn">
+                        <div class="item">
+                            <img src="{{product.product_image.url}}" alt="" height="300" class="">
+                            <small class="fw-light text-decoration-line-through">{{product.discounted_price}}</small>
+                        </div>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock main-content %}
